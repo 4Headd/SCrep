@@ -1,0 +1,516 @@
+﻿@{
+}
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.0/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.0/dist/js/tom-select.complete.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css"
+          rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
+
+<body data-bs-theme="dark">
+    <!-- Заголовок с поиском -->
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-radioactive pe-1" style="font-size: 1.5rem;"> Stalcraft Auction Helper</i>
+            </a>
+            <div class="d-flex" role="search">
+                <script>
+                    function changePage() {
+                        let id = document.getElementById("searchSelect").value;
+                        if (id == "") {
+                            return
+                        } else {
+                            window.location.href = `https://localhost:7006{id}`
+                        }
+                    }
+                </script>
+                <select id="searchSelect" placeholder="Поиск предмета" autocomplete="off">
+                    <option value="">Выберите предмет</option>
+                </select>
+                <button class="btn btn-success ms-2" onclick="changePage()" ">Перейти к предмету</button>
+            </div>
+        </div>
+    </nav>
+    <!-- Приветственный блок -->
+    <!-- <div>Пока пусто</div> -->
+    <!-- Категории предметов -->
+    <div class="accordion m-5" id="accordionItems">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#weapon" aria-expanded="false" aria-controls="weapon">
+                    Оружие
+                </button>
+            </h2>
+            <div id="weapon" class="accordion-collapse collapse" data-bs-parent="#accordionItems">
+                <div class="accordion-body d-flex flex-column">
+                    <nav>
+                        <div class="nav nav-tabs mb-2" id="nav-armor-tab" role="tablist">
+                            <button class="nav-link active" id="nav-armor-rifle-tab" data-bs-toggle="tab"
+                                    data-bs-target="#weapon_assault_rifle" type="button" role="tab"
+                                    aria-controls="weapon_assault_rifle" aria-selected="true">
+                                Штурмовые винтовки
+                            </button>
+                            <button class="nav-link" id="nav-armor-machine-gun-tab" data-bs-toggle="tab"
+                                    data-bs-target="#weapon_device" type="button" role="tab" aria-controls="weapon_device"
+                                    aria-selected="true">
+                                Устройства
+                            </button>
+                            <button class="nav-link" id="nav-armor-pistol-tab" data-bs-toggle="tab"
+                                    data-bs-target="#weapon_heavy" type="button" role="tab" aria-controls="weapon_heavy"
+                                    aria-selected="true">
+                                Тяжелое оружие
+                            </button>
+                            <button class="nav-link" id="nav-armor-shotgun-tab" data-bs-toggle="tab"
+                                    data-bs-target="#weapon_machine_gun" type="button" role="tab"
+                                    aria-controls="weapon_machine_gun" aria-selected="true">
+                                Пулемёты
+                            </button>
+                            <button class="nav-link" id="nav-armor-sniper-tab" data-bs-toggle="tab"
+                                    data-bs-target="#weapon_melee" type="button" role="tab" aria-controls="weapon_melee"
+                                    aria-selected="true">
+                                Ближнее оружие
+                            </button>
+                            <button class="nav-link" id="nav-armor-sniper-tab" data-bs-toggle="tab"
+                                    data-bs-target="#weapon_pistol" type="button" role="tab" aria-controls="weapon_pistol"
+                                    aria-selected="true">
+                                Пистолеты
+                            </button>
+                            <button class="nav-link" id="nav-armor-sniper-tab" data-bs-toggle="tab"
+                                    data-bs-target="#weapon_shotgun_rifle" type="button" role="tab"
+                                    aria-controls="weapon_shotgun_rifle" aria-selected="true">
+                                Дробовики
+                            </button>
+                            <button class="nav-link" id="nav-armor-sniper-tab" data-bs-toggle="tab"
+                                    data-bs-target="#weapon_sniper_rifle" type="button" role="tab"
+                                    aria-controls="weapon_sniper_rifle" aria-selected="true">
+                                Снайперские винтовки
+                            </button>
+                            <button class="nav-link" id="nav-armor-sniper-tab" data-bs-toggle="tab"
+                                    data-bs-target="#weapon_submachine_gun" type="button" role="tab"
+                                    aria-controls="weapon_submachine_gun" aria-selected="true">
+                                Пистолет-пулемёты
+                            </button>
+                        </div>
+                    </nav>
+
+                    <div class="tab-content">
+                        <div id="weapon_assault_rifle" class="tab-pane fade show active" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="weapon_device" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="weapon_heavy" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="weapon_machine_gun" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="weapon_melee" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="weapon_pistol" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="weapon_shotgun_rifle" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="weapon_sniper_rifle" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="weapon_submachine_gun" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#armor" aria-expanded="false" aria-controls="armor">
+                    Броня и костюмы
+                </button>
+            </h2>
+            <div id="armor" class="accordion-collapse collapse" data-bs-parent="#accordionItems">
+                <div class="accordion-body d-flex flex-column">
+                    <nav>
+                        <div class="nav nav-tabs mb-2" id="nav-armor-tab" role="tablist">
+                            <button class="nav-link active" id="nav-armor-rifle-tab" data-bs-toggle="tab"
+                                    data-bs-target="#armor_clothes" type="button" role="tab" aria-controls="armor_clothes"
+                                    aria-selected="true">
+                                Одежда
+                            </button>
+                            <button class="nav-link" id="nav-armor-machine-gun-tab" data-bs-toggle="tab"
+                                    data-bs-target="#armor_combat" type="button" role="tab" aria-controls="armor_combat"
+                                    aria-selected="true">
+                                Боевая
+                            </button>
+                            <button class="nav-link" id="nav-armor-pistol-tab" data-bs-toggle="tab"
+                                    data-bs-target="#armor_combined" type="button" role="tab" aria-controls="armor_combined"
+                                    aria-selected="true">
+                                Комбинированная
+                            </button>
+                            <button class="nav-link" id="nav-armor-shotgun-tab" data-bs-toggle="tab"
+                                    data-bs-target="#armor_scientist" type="button" role="tab"
+                                    aria-controls="armor_scientist" aria-selected="true">
+                                Научная
+                            </button>
+                            <button class="nav-link" id="nav-armor-sniper-tab" data-bs-toggle="tab"
+                                    data-bs-target="#armor_device" type="button" role="tab" aria-controls="armor_device"
+                                    aria-selected="true">
+                                Устройства
+                            </button>
+                        </div>
+                    </nav>
+
+                    <div class="tab-content">
+                        <div id="armor_clothes" class="tab-pane fade show active" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="armor_combat" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="armor_combined" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="armor_scientist" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="armor_device" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#artefact" aria-expanded="false" aria-controls="artefact">
+                    Артефакты
+                </button>
+            </h2>
+            <div id="artefact" class="accordion-collapse collapse" data-bs-parent="#accordionItems">
+                <div class="accordion-body d-flex flex-column">
+                    <nav>
+                        <div class="nav nav-tabs mb-2" id="nav-armor-tab" role="tablist">
+                            <button class="nav-link active" id="nav-armor-rifle-tab" data-bs-toggle="tab"
+                                    data-bs-target="#artefact_biochemical" type="button" role="tab"
+                                    aria-controls="artefact_biochemical" aria-selected="true">
+                                Био
+                            </button>
+                            <button class="nav-link" id="nav-armor-machine-gun-tab" data-bs-toggle="tab"
+                                    data-bs-target="#artefact_electrophysical" type="button" role="tab"
+                                    aria-controls="artefact_electrophysical" aria-selected="true">
+                                Электро
+                            </button>
+                            <button class="nav-link" id="nav-armor-pistol-tab" data-bs-toggle="tab"
+                                    data-bs-target="#artefact_gravity" type="button" role="tab"
+                                    aria-controls="artefact_gravity" aria-selected="true">
+                                Грави
+                            </button>
+                            <button class="nav-link" id="nav-armor-shotgun-tab" data-bs-toggle="tab"
+                                    data-bs-target="#artefact_thermal" type="button" role="tab"
+                                    aria-controls="artefact_thermal" aria-selected="true">
+                                Термические
+                            </button>
+                            <button class="nav-link" id="nav-armor-sniper-tab" data-bs-toggle="tab"
+                                    data-bs-target="#artefact_other_arts" type="button" role="tab"
+                                    aria-controls="artefact_other_arts" aria-selected="true">
+                                Прочие
+                            </button>
+                        </div>
+                    </nav>
+
+                    <div class="tab-content">
+                        <div id="artefact_biochemical" class="tab-pane fade show active" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="artefact_electrophysical" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="artefact_gravity" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="artefact_thermal" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="artefact_other_arts" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#attachment" aria-expanded="false" aria-controls="attachment">
+                    Обвесы
+                </button>
+            </h2>
+            <div id="attachment" class="accordion-collapse collapse" data-bs-parent="#accordionItems">
+                <div class="accordion-body d-flex flex-column">
+                    <nav>
+                        <div class="nav nav-tabs mb-2" id="nav-armor-tab" role="tablist">
+                            <button class="nav-link active" id="nav-armor-rifle-tab" data-bs-toggle="tab"
+                                    data-bs-target="#attachment_barrel" type="button" role="tab"
+                                    aria-controls="attachment_barrel" aria-selected="true">
+                                Надульники и
+                                глушители
+                            </button>
+                            <button class="nav-link" id="nav-armor-machine-gun-tab" data-bs-toggle="tab"
+                                    data-bs-target="#attachment_butt" type="button" role="tab"
+                                    aria-controls="attachment_butt" aria-selected="true">
+                                Приклады
+                            </button>
+                            <button class="nav-link" id="nav-armor-pistol-tab" data-bs-toggle="tab"
+                                    data-bs-target="#attachment_collimator_sights" type="button" role="tab"
+                                    aria-controls="attachment_collimator_sights" aria-selected="true">
+                                Прицелы
+                            </button>
+                            <button class="nav-link" id="nav-armor-shotgun-tab" data-bs-toggle="tab"
+                                    data-bs-target="#attachment_forend" type="button" role="tab"
+                                    aria-controls="attachment_forend" aria-selected="true">
+                                Цевье и ложе
+                            </button>
+                            <button class="nav-link" id="nav-armor-sniper-tab" data-bs-toggle="tab"
+                                    data-bs-target="#attachment_mag" type="button" role="tab" aria-controls="attachment_mag"
+                                    aria-selected="true">
+                                Магазины
+                            </button>
+                            <button class="nav-link" id="nav-armor-sniper-tab" data-bs-toggle="tab"
+                                    data-bs-target="#attachment_pistol_handle" type="button" role="tab"
+                                    aria-controls="attachment_pistol_handle" aria-selected="true">
+                                Рукояти
+                            </button>
+                            <button class="nav-link" id="nav-armor-sniper-tab" data-bs-toggle="tab"
+                                    data-bs-target="#attachment_other" type="button" role="tab"
+                                    aria-controls="attachment_other" aria-selected="true">
+                                Прочее
+                            </button>
+                        </div>
+                    </nav>
+
+                    <div class="tab-content">
+                        <div id="attachment_barrel" class="tab-pane fade show active" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="attachment_butt" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="attachment_collimator_sights" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="attachment_forend" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="attachment_mag" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="attachment_pistol_handle" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                        <div id="attachment_other" class="tab-pane fade" role="tabpanel" tabindex="0">
+                            <div class="d-flex flex-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#backpack" aria-expanded="false" aria-controls="backpack">
+                    Мобильный лагерь
+                </button>
+            </h2>
+            <div id="backpack" class="accordion-collapse collapse" data-bs-parent="#accordionItems">
+                <div class="accordion-body d-flex flex-wrap">
+                    <!-- Сюда мобильный лагерь -->
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#bullet" aria-expanded="false" aria-controls="bullet">
+                    Аммуниция
+                </button>
+            </h2>
+            <div id="bullet" class="accordion-collapse collapse" data-bs-parent="#accordionItems">
+                <div class="accordion-body d-flex flex-wrap">
+                    <!-- Сюда генерацию без вкладок -->
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#containers" aria-expanded="false" aria-controls="containers">
+                    Контейнеры и рюкзаки
+                </button>
+            </h2>
+            <div id="containers" class="accordion-collapse collapse" data-bs-parent="#accordionItems">
+                <div class="accordion-body d-flex flex-wrap">
+                    <!-- Сюда генерацию без вкладок -->
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#grenade" aria-expanded="false" aria-controls="grenade">
+                    Гранаты
+                </button>
+            </h2>
+            <div id="grenade" class="accordion-collapse collapse" data-bs-parent="#accordionItems">
+                <div class="accordion-body d-flex flex-wrap">
+                    <!-- Сюда генерацию без вкладок -->
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#medicine" aria-expanded="false" aria-controls="medicine">
+                    Медицина
+                </button>
+            </h2>
+            <div id="medicine" class="accordion-collapse collapse" data-bs-parent="#accordionItems">
+                <div class="accordion-body d-flex flex-wrap">
+                    <!-- Сюда генерацию без вкладок -->
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#misc" aria-expanded="false" aria-controls="misc">
+                    Разное
+                </button>
+            </h2>
+            <div id="misc" class="accordion-collapse collapse" data-bs-parent="#accordionItems">
+                <div class="accordion-body d-flex flex-wrap">
+                    <!-- Сюда генерацию без вкладок -->
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#other" aria-expanded="false" aria-controls="other">
+                    Прочее
+                </button>
+            </h2>
+            <div id="other" class="accordion-collapse collapse" data-bs-parent="#accordionItems">
+                <div class="accordion-body d-flex flex-wrap">
+                    <!-- Сюда генерацию без вкладок -->
+                </div>
+            </div>
+        </div>
+
+        <script>
+            "use strict";
+
+            let url = "https://raw.githubusercontent.com/EXBO-Studio/stalcraft-database/main/ru/listing.json";
+
+            let search = document.getElementById("searchSelect")
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    for (let item of data) {
+                        //console.log(item.data)
+                        let path = item.data.split("/")
+
+                        let divID = path.slice(2, path.length - 1).join("_")
+                        if (divID == "other_device" || divID == "other_skins") {
+                            divID = "other"
+                        }
+
+                        let div = document.getElementById(divID)
+                        if (div == null) {
+                            console.log(`No div for ${divID} divID, item.data = ${item.data}`)
+
+                            continue
+                        }
+
+                        let flex = div.firstElementChild
+                        if (div == null) {
+                            console.log(`No d-flex for ${divID} divID, item.data = ${item.data}`)
+
+                            continue
+                        }
+
+                        let itemID = path[path.length - 1].replace(".json", "")
+
+                        flex.insertAdjacentHTML("beforeend", `
+                                        <div class="card m-2" style="width: 12rem;">
+                                            <img class="mt-3 mx-3 p-3 img-thumbnail" src="${"https://raw.githubusercontent.com/EXBO-Studio/stalcraft-database/main/ru" + item.icon}" class="card-img-top"
+                                                alt="${item.name.lines.ru}">
+                                            <div class="card-body d-flex flex-column">
+                                                <h5 class="card-title pb-2">${item.name.lines.ru}</h5>
+                                                <a class="mt-auto btn btn-primary" href="${item.data.replace(".json", "")}">Перейти к лотам</a>
+                                            </div>
+                                        </div>
+                                        `)
+
+                        search.insertAdjacentHTML("beforeend", `<option value="${item.data.replace(".json", "")}">${item.name.lines.ru}</option>`)
+                    }
+                })
+                .catch(function (err) {
+                    console.log("Fetch Error: ", err);
+                });
+
+            $("#searchSelect")
+            $(document).ready(function () {
+                $("#searchSelect").select2({
+                    dropdownAutoWidth: true,
+                    width: 'auto',
+                    theme: 'bootstrap-5'
+                });
+            });
+                        // let settings = {
+                        //     plugins: ['dropdown_input'],
+                        //     sortField: {
+                        //         field: "text",
+                        //         direction: "asc"
+                        //     }
+                        // };
+
+                        // new TomSelect("#searchSelect", {});
+        </script>
+    </div>
+    <!-- Футер -->
+    <div class="container">
+        <footer class="pt-3 mt-4 border-top">
+            <p class="text-body-secondary text-center">
+                Сайт разработан в рамках проекта для курсовой работы по ТРПО<br>
+                © 2023 Все права на игру принадлежат EXBO
+            </p>
+        </footer>
+    </div>
+    <!-- Скрипты -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>
